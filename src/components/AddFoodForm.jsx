@@ -16,12 +16,20 @@ class AddFoodForm extends Component {
         this.setState({ [event.target.name]: event.target.value })
     }
 
+    handleSubmit = (event) => {
+        event.preventDefault()
+        const newFood = {
+            name: this.state.name,
+            calories: this.state.calories
+        }
+    }
+
     render() {
         return (
             <div>
             <button onClick={this.handleForm}>{!this.state.showForm && "Show form to add new foods"}</button>
                 {this.state.showForm && 
-                    <form action="">
+                    <form onSubmit={this.handleSubmit}>
 
                         <label htmlFor="name">Name</label>
                         <input type="text" name="name" onChange={this.handleChange} value={this.state.name} />
